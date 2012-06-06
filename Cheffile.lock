@@ -1,0 +1,36 @@
+SITE
+  remote: http://community.opscode.com/api/v1
+  specs:
+    apache2 (1.1.8)
+    bluepill (1.0.4)
+    build-essential (1.0.2)
+    nginx (0.101.2)
+      bluepill (>= 0.0.0)
+      build-essential (>= 0.0.0)
+      ohai (~> 1.0.2)
+      runit (>= 0.0.0)
+    ohai (1.0.2)
+    runit (0.15.0)
+
+GIT
+  remote: https://github.com/fnichol/chef-rvm
+  ref: master
+  sha: 6411f1194c2f57dc2578e87d9ca89199561512dd
+  specs:
+    rvm (0.9.1)
+
+GIT
+  remote: https://github.com/fnichol/chef-rvm_passenger
+  ref: master
+  sha: 2648c09eceb961414321bd203969500b7d40334e
+  specs:
+    rvm_passenger (0.8.3)
+      apache2 (~> 1.1.8)
+      nginx (~> 0.101.0)
+      rvm (>= 0.8.0)
+
+DEPENDENCIES
+  apache2 (>= 1.0.0)
+  rvm (>= 0)
+  rvm_passenger (>= 0)
+
