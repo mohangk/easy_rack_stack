@@ -1,0 +1,31 @@
+"id": "UNIQUE_DATA_BAG_ID",
+"appname":"YOUR_APP_NAME",
+"stages": {
+    "production": {
+        "deploy_user":"vagrant",
+        "deploy_group":"vagrant",
+        "hostname":"example.com",
+        "aliases":["www.example.com", ],
+        "min_instances":0,
+        "redirect_from":"",
+        "enable":false,
+        "ip_address":"192.168.0.1",  # may also be "*"
+        "enable_ssl":true,
+        "ssl_port":"443",
+        "ssl_cert_file":"CONTENT-OF-SSL-CERT-FILE-AS-AN-ARRAY",
+        "ssl_cert_key_file":"CONTENT-OF-SSL-CERT-KEY-FILE-AS-AN-ARRAY",
+        "ssl_cert_chain_file":"CONTENT-OF-SSL-CERT-BUNDLE-FILE-AS-AN-ARRAY",
+        "database" : {
+            "adapter": "postgresql",
+            "dbname":  "DATABASENAME",
+            "host": "127.0.0.1",
+            "port": 5432,
+            "username": "DATABASEUSERNAME",
+            "password": "DATABASEPASSWORD"
+            "encoding": "unicode",
+            "reconnect": "true",
+            "pool":"25",
+            "timeout":"5000"
+        }
+    }
+}
