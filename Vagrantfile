@@ -71,7 +71,14 @@ Vagrant::Config.run do |config|
      #chef.add_role "web"
   
      # You may also specify custom JSON attributes:
-     #chef.json = { :mysql_password => "foo" }
+     chef.json = { 
+      'rvm' => {
+        'vagrant' => { 
+          'system_chef_client' => '/opt/vagrant_ruby/bin/chef-client' , 
+          'system_chef_solo' => '/opt/vagrant_ruby/bin/chef-solo'
+          } 
+        }
+      }
    end
 
   # Enable provisioning with chef server, specifying the chef server URL,

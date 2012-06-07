@@ -5,16 +5,11 @@
 
 Stuff to look into
 
-* Adding the 
-
-Stuff to look into
-
-* Adding the 
-
-Stuff to look into
-
-* Adding the 
-
-Stuff to look into
-
 * Adding the rvm::vagrant recipe, not how this will interact with the rest of the setup once we deploy to EC2
+* Whether projects should include .rvmrc, as it messes with our rvm::system setup ?
+
+* rvm::vagrant attributes need to be modified
+
+/opt/vagrant_ruby/bin/chef-client
+/opt/vagrant_ruby/bin/chef-solo                                                                                                                                          
+                                                                                                                                          ~                       
