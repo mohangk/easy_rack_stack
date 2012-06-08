@@ -13,10 +13,10 @@ include_recipe 'imagemagick'
 include_recipe 'imagemagick::devel'
 
 stage_name = 'development'
-appname = 'test'
+appname = 'Pie'
 deploy_user = 'vagrant'
 deploy_group =  'vagrant'
-base_path = "/home/#{deploy_user}/#{appname}/#{stage_name}"
+base_path = "/home/#{deploy_user}/#{appname}"
 instance_name = [appname, stage_name].join("_")
 
 stage_data = {'enable'=> true, 'enable_ssl' => false, 'hostname' => 'localhost'}
@@ -30,10 +30,10 @@ ssl_chain_file = (stage_data['enable_ssl']) ? "#{instance_name}-bundle.crt" : ""
 
 # Create directories for all the apps and their stages
 app_directories = [
-  base_path,
-  "#{base_path}/releases",
-  "#{base_path}/shared",
-  "#{base_path}/shared/system",
+  base_path
+ # "#{base_path}/releases",
+  #"#{base_path}/shared",
+  #"#{base_path}/shared/system",
 ]
 app_directories.each do |dir|
   directory dir do
