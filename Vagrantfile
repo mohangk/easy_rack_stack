@@ -72,6 +72,11 @@ Vagrant::Config.run do |config|
   
      # You may also specify custom JSON attributes:
      chef.json = { 
+      'postgresql' => {
+        'hba' => [
+          { 'method' => 'trust', 'address' => '127.0.0.1/32' },
+          { 'method' => 'trust', 'address' => '::1/128' }
+       ]},
       'rvm' => {
         'vagrant' => { 
           'system_chef_client' => '/opt/vagrant_ruby/bin/chef-client' , 

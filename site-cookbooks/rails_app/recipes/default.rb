@@ -6,6 +6,11 @@ include_recipe 'rvm::system'
 include_recipe 'rvm::vagrant'
 include_recipe 'rvm_passenger::default'
 include_recipe 'rvm_passenger::apache2'
+include_recipe 'chef-postgresql::server'
+
+include_recipe 'nodejs'
+include_recipe 'imagemagick'
+include_recipe 'imagemagick::devel'
 
 stage_name = 'development'
 appname = 'test'
