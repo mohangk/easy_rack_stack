@@ -7,11 +7,28 @@ In you rails-app
 
 1. Add to Gemfile
 
-gem 'git-deploy'
+ gem 'git-deploy'
 
 2. Add Vagrant as a remote 
 
  git remote add vagrant ssh://vagrant@localhost:2222/path/to/myapp
+
+3. Add your public key to the vagrant instanct (Probably want to do this as part of the chef setup)
+
+ ssh vagrant@localhost -p 2222 mkdir -p .ssh
+ cat ~/.ssh/id_rsa.pub | ssh vagrant@localhost -p2222 'cat >> .ssh/authorized_keys'
+
+3. Setup the remote
+
+ git deploy setup -r vagrant
+
+4. Setup the deploy hook scripts and commit to local repo
+
+ git deploy init
+
+5. Push the code
+
+ git push vagrant master
 
 Stuff to look into
 
