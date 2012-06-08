@@ -1,6 +1,23 @@
-0. rvm ruby-1.9.3@foobar --create --rvmrc
+Introduction 
+============
+
+This projects objective is two fold
+
+ * To provide a Vagrantfile and corresponding cookbook that will setup your Vagrant instance with apache2, rvm, rvm_passenger, postgres and an empty git repo that you can "push to deploy" to
+ * To be able to replicate the same configuration above easily on an EC2 instance using the same cookbooks
+
+In other words we want to simulate the ease of deploy of Heroku both in a local repeatable setup via Vagrant and in the clound via EC2. 
+
+Status
+------
+Very much a work in progress. The cookbook that builds everything up still has hardcoded config values in it and is located in site-cookbooks/rails_app/recipes/default.rb. No work has been done on getting the setup on EC2 as of yet.
+
+Setup 
+=====
+
+1. git clone git://github.com/mohangk/chef_rails_app.git
 1. bundle install
-2. vagrant init precise64 http://files.vagrantup.com/precise64.box
+2. vagrant box add precise64 http://files.vagrantup.com/precise64.box
 3. librarian-chef install
 
 In you rails-app
