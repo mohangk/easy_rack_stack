@@ -14,3 +14,7 @@ cookbook 'chef-postgresql',
 
 cookbook 'imagemagick'
 cookbook 'nodejs'
+
+cookbook 'chef_rails_app',
+  :git => 'https://github.com/mohangk/chef_rails_app',
+  :path => 'site-cookbooks/rails_app'
