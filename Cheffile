@@ -3,6 +3,9 @@
 
 site 'http://community.opscode.com/api/v1'
 
+cookbook 'user',
+  :git => 'git://github.com/fnichol/chef-user.git'
+
 cookbook 'apache2', '>= 1.0.0'
 
 cookbook 'rvm',

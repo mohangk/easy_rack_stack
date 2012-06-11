@@ -1,3 +1,11 @@
+#create the vagrant user (which is used for EC2)
+
+user_account "vagrant" do
+  comment "Vagrant user"
+  home '/home/vagrant'
+end
+
+
 include_recipe 'apache2::default'
 include_recipe 'apache2::mod_expires'
 include_recipe "apache2::mod_xsendfile"
@@ -11,6 +19,8 @@ include_recipe 'chef-postgresql::server'
 include_recipe 'nodejs'
 include_recipe 'imagemagick'
 include_recipe 'imagemagick::devel'
+
+
 
 stage_name = 'development'
 appname = 'Pie'

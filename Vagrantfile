@@ -67,7 +67,8 @@ Vagrant::Config.run do |config|
      chef.cookbooks_path = ["cookbooks", "site-cookbooks"]
      #chef.roles_path = "../my-recipes/roles"
      chef.data_bags_path = "data_bags"
-     chef.add_recipe "rails_app"
+     chef.add_recipe "chef_rails_app"
+     #chef.add_recipe "rails_app"
      #chef.add_role "web"
   
      # You may also specify custom JSON attributes:

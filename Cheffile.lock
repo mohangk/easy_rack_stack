@@ -33,6 +33,13 @@ SITE
     xfs (1.0.0)
 
 GIT
+  remote: git://github.com/fnichol/chef-user.git
+  ref: master
+  sha: e9e93720fcc930918ba7be856a12ece02b300d43
+  specs:
+    user (0.2.13)
+
+GIT
   remote: https://github.com/coroutine/chef-postgresql
   ref: master
   sha: 4bd7f58f5ccca224fa2418b0d82b48e15f6b9272
@@ -59,11 +66,21 @@ GIT
       nginx (~> 0.101.0)
       rvm (>= 0.8.0)
 
+GIT
+  remote: https://github.com/mohangk/chef_rails_app
+  path: site-cookbooks/rails_app
+  ref: master
+  sha: 980eaf3524e9984b3d897025886ae8c5ea62d1ff
+  specs:
+    chef_rails_app (0.0.1)
+
 DEPENDENCIES
   apache2 (>= 1.0.0)
   chef-postgresql (>= 0)
+  chef_rails_app (>= 0)
   imagemagick (>= 0)
   nodejs (>= 0)
   rvm (>= 0)
   rvm_passenger (>= 0)
+  user (>= 0)
 
