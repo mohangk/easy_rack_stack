@@ -85,6 +85,12 @@ Vagrant::Config.run do |config|
           } 
         }
       }
+      
+     require 'json'
+     open('dna.json', 'w') do |f|
+       chef.json[:run_list] = chef.run_list
+       f.write chef.json.to_json
+     end 
    end
 
   # Enable provisioning with chef server, specifying the chef server URL,

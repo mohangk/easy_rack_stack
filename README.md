@@ -16,11 +16,16 @@ Setup
 =====
 
 1. git clone git://github.com/mohangk/chef_rails_app.git
+Setting up chef-rails-app
+------------------------
+
+0. rvm ruby-1.9.3@foobar --create --rvmrc
 1. bundle install
 2. vagrant box add precise64 http://files.vagrantup.com/precise64.box
 3. librarian-chef install
 
 In you rails-app
+----------------
 
 1. Add to Gemfile
 
@@ -30,9 +35,10 @@ In you rails-app
 
  git remote add vagrant ssh://vagrant@localhost:2222/path/to/myapp
 
-3. Add your public key to the vagrant instanct (Probably want to do this as part of the chef setup)
+3. Add your public key to the vagrant instance (Probably want to do this as part of the chef setup)
 
  ssh vagrant@localhost -p 2222 mkdir -p .ssh
+
  cat ~/.ssh/id_rsa.pub | ssh vagrant@localhost -p2222 'cat >> .ssh/authorized_keys'
 
 3. Setup the remote
@@ -45,15 +51,30 @@ In you rails-app
 
 5. Push the code
 
- git push vagrant master
+ git push vagrant local_branch:master 
+
+Spinning up on EC2
+------------------
+We are basing the work on the https://github.com/nrako/librarian-ec2 project
+
+1. Spin up an EC2 instance
+
+ec2-run-instances ami-a4ca8df6 --region ap-southeast-1 --instance-type t1.micro --key ec2-ap-southeast-1-keypair --user-data-file bootstrap.sh 
+
 
 Stuff to look into
+------------------
+* Adding the rvm::vagrant recipe, not how this will interact with the rest of the
+setup once we deploy to EC2
 
-* Adding the rvm::vagrant recipe, not how this will interact with the rest of the setup once we deploy to EC2
 * Whether projects should include .rvmrc, as it messes with our rvm::system setup ?
+                                                                                                                                    
+* Automate initial 'bundle install' 
 
-* rvm::vagrant attributes need to be modified
+*Figure out cleanest way to setup database from the local machine instead of ssh-ing
+into Vagrant ? 
 
-/opt/vagrant_ruby/bin/chef-client
-/opt/vagrant_ruby/bin/chef-solo                                                                                                                                          
-                                                                                                                                          ~                       
+*Best way to handle different environments ? There exists a configuration option 
+in rvm_passenger recipe, and git-deploy uses the RAILS_ENV variable. How would we 
+keep (production. staging )
+

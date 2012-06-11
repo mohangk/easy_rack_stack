@@ -1,0 +1,1 @@
+{"postgresql":{"hba":[{"method":"trust","address":"127.0.0.1/32"},{"method":"trust","address":"::1/128"}]},"rvm":{"default_ruby":"ruby-1.9.2","vagrant":{"system_chef_client":"/opt/vagrant_ruby/bin/chef-client","system_chef_solo":"/opt/vagrant_ruby/bin/chef-solo"}},"run_list":["recipe[rails_app]"]}
