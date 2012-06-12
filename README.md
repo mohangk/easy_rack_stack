@@ -56,11 +56,22 @@ In you rails-app
 Spinning up on EC2
 ------------------
 We are basing the work on the https://github.com/nrako/librarian-ec2 project
+Ubuntu images on EC2 list http://uec-images.ubuntu.com/precise/current/l
 
-1. Spin up an EC2 instance
+
+1. Spin up an EC2 instance with bootstrap.sh
+
+Micro instance in ap-southeast-1
 
 ec2-run-instances ami-a4ca8df6 --region ap-southeast-1 --instance-type t1.micro --key ec2-ap-southeast-1-keypair --user-data-file bootstrap.sh 
 
+Large instance in ap-souteast-1
+
+ec2-run-instances ami-2ab8fe78 --region ap-southeast-1 --instance-type m1.large --key ec2-ap-southeast-1-keypair --user-data-file bootstrap.sh 
+
+2. Start the magic
+
+./setup.sh <ip address> ./ ~/.ec2/ec2-ap-southeast-1-keypair
 
 Stuff to look into
 ------------------

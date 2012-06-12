@@ -1,8 +1,14 @@
-#create the vagrant user (which is used for EC2)
 
+ohai "reload_passwd" do
+  action :nothing
+  plugin 'passwd'
+end
+
+#create the vagrant user (which is used for EC2)
 user_account "vagrant" do
   comment "Vagrant user"
   home '/home/vagrant'
+  notifies :reload, resources(:ohai => 'reload_passwd'), :immediately
 end
 
 
@@ -10,8 +16,10 @@ include_recipe 'apache2::default'
 include_recipe 'apache2::mod_expires'
 include_recipe "apache2::mod_xsendfile"
 include_recipe 'rvm::system'
-#might need to be removed before deploying on EC2
-include_recipe 'rvm::vagrant'
+#we don't want this when deployin on EC2
+if node[:instance_role] == 'vagrant'
+  include_recipe 'rvm::vagrant'
+end
 include_recipe 'rvm_passenger::default'
 include_recipe 'rvm_passenger::apache2'
 include_recipe 'chef-postgresql::server'
