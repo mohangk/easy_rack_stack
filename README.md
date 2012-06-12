@@ -12,17 +12,14 @@ Status
 ------
 Very much a work in progress. The cookbook that builds everything up still has hardcoded config values in it and is located in site-cookbooks/rails_app/recipes/default.rb. No work has been done on getting the setup on EC2 as of yet.
 
-Setup 
-=====
-
-1. git clone git://github.com/mohangk/chef_rails_app.git
 Setting up chef-rails-app
 ------------------------
 
-0. rvm ruby-1.9.3@foobar --create --rvmrc
-1. bundle install
-2. vagrant box add precise64 http://files.vagrantup.com/precise64.box
-3. librarian-chef install
+1. git clone git://github.com/mohangk/chef_rails_app.git
+2. rvm ruby-1.9.3@foobar --create --rvmrc
+3. bundle install
+4. vagrant box add precise64 http://files.vagrantup.com/precise64.box
+5. librarian-chef install
 
 In you rails-app
 ----------------
@@ -61,31 +58,38 @@ Ubuntu images on EC2 list http://uec-images.ubuntu.com/precise/current/l
 
 1. Spin up an EC2 instance with bootstrap.sh
 
-Micro instance in ap-southeast-1
+ Micro instance in ap-southeast-1
 
-ec2-run-instances ami-a4ca8df6 --region ap-southeast-1 --instance-type t1.micro --key ec2-ap-southeast-1-keypair --user-data-file bootstrap.sh 
+ ec2-run-instances ami-a4ca8df6 --region ap-southeast-1 --instance-type t1.micro --key ec2-ap-southeast-1-keypair --user-data-file bootstrap.sh 
 
-Large instance in ap-souteast-1
+ Large instance in ap-souteast-1
 
-ec2-run-instances ami-2ab8fe78 --region ap-southeast-1 --instance-type m1.large --key ec2-ap-southeast-1-keypair --user-data-file bootstrap.sh 
+ ec2-run-instances ami-2ab8fe78 --region ap-southeast-1 --instance-type m1.large --key ec2-ap-southeast-1-keypair --user-data-file bootstrap.sh 
 
 2. Start the magic
 
-./setup.sh <ip address> ./ ~/.ec2/ec2-ap-southeast-1-keypair
+ ./setup.sh <ip address> ./ ~/.ec2/ec2-ap-southeast-1-keypair
 
 Stuff to look into
 ------------------
-* Adding the rvm::vagrant recipe, not how this will interact with the rest of the
-setup once we deploy to EC2
+* We need something like rvm::vagrant recipe for when we run in an EC2 context.
+We need a wrapper for chef-solo and chef-client for when we deploy to EC2
 
 * Whether projects should include .rvmrc, as it messes with our rvm::system setup ?
                                                                                                                                     
 * Automate initial 'bundle install' 
 
-*Figure out cleanest way to setup database from the local machine instead of ssh-ing
+* Figure out cleanest way to setup database from the local machine instead of ssh-ing
 into Vagrant ? 
 
-*Best way to handle different environments ? There exists a configuration option 
+* Best way to handle different environments ? There exists a configuration option 
 in rvm_passenger recipe, and git-deploy uses the RAILS_ENV variable. How would we 
 keep (production. staging )
 
+* nginx support
+
+* SSL support
+
+* Postgres pg_hba.conf permission 
+  - we need to be able to override the socket based setting as well
+  - is too permissive ?

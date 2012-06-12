@@ -67,8 +67,8 @@ Vagrant::Config.run do |config|
      chef.cookbooks_path = ["cookbooks", "site-cookbooks"]
      #chef.roles_path = "../my-recipes/roles"
      chef.data_bags_path = "data_bags"
-     chef.add_recipe "chef_rails_app"
-     #chef.add_recipe "rails_app"
+     #chef.add_recipe "chef_rails_app"
+     chef.add_recipe "rails_app"
      #chef.add_role "web"
   
      # You may also specify custom JSON attributes:
@@ -80,6 +80,7 @@ Vagrant::Config.run do |config|
        ]},
       'rvm' => {
         'default_ruby' => 'ruby-1.9.2',
+        'group_users' => ['www-data','vagrant'],
         'vagrant' => { 
           'system_chef_client' => '/opt/vagrant_ruby/bin/chef-client' , 
           'system_chef_solo' => '/opt/vagrant_ruby/bin/chef-solo'
@@ -89,7 +90,7 @@ Vagrant::Config.run do |config|
       
      require 'json'
      open('dna.json', 'w') do |f|
-       chef.json[:run_list] = chef.run_list
+       chef.json[:run_list] = ["recipe[chef_rails_app]"] #chef.run_list
        f.write chef.json.to_json
      end 
    end
