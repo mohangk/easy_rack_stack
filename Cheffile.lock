@@ -74,17 +74,16 @@ GIT
       rvm (>= 0.8.0)
 
 GIT
-  remote: https://github.com/mohangk/chef_rails_app
-  path: site-cookbooks/rails_app
+  remote: https://github.com/newcontext/chef-rack_stack
   ref: master
-  sha: 980eaf3524e9984b3d897025886ae8c5ea62d1ff
+  sha: 95cbdb11de7c70b2616b46f8b8c9467168cd4557
   specs:
-    chef_rails_app (0.0.1)
+    chef-rack_stack (0.0.1)
 
 DEPENDENCIES
   apache2 (>= 1.0.0)
   chef-postgresql (>= 0)
-  chef_rails_app (>= 0)
+  chef-rack_stack (>= 0)
   imagemagick (>= 0)
   nodejs (>= 0)
   redisio (>= 0)

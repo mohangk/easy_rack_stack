@@ -64,11 +64,11 @@ Vagrant::Config.run do |config|
   # some recipes and/or roles.
   #
    config.vm.provision :chef_solo do |chef|
-     chef.cookbooks_path = ["cookbooks", "site-cookbooks"]
+     chef.cookbooks_path = ["cookbooks"]
      #chef.roles_path = "../my-recipes/roles"
      chef.data_bags_path = "data_bags"
      #chef.add_recipe "chef_rails_app"
-     chef.add_recipe "rails_app"
+     chef.add_recipe "chef-rack_stack"
      #chef.add_role "web"
   
      # You may also specify custom JSON attributes:
@@ -85,9 +85,11 @@ Vagrant::Config.run do |config|
           'system_chef_client' => '/opt/vagrant_ruby/bin/chef-client' , 
           'system_chef_solo' => '/opt/vagrant_ruby/bin/chef-solo'
           } 
-        }
-      }
-      
+        },
+      'rack_stack' => {
+        'environment' => 'production'
+        } 
+     }
      require 'json'
      open('dna.json', 'w') do |f|
        chef.json[:run_list] = chef.run_list

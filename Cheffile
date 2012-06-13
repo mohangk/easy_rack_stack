@@ -18,9 +18,8 @@ cookbook 'chef-postgresql',
 cookbook 'imagemagick'
 cookbook 'nodejs'
 
-cookbook 'chef_rails_app',
-  :git => 'https://github.com/mohangk/chef_rails_app',
-  :path => 'site-cookbooks/rails_app'
+cookbook 'chef-rack_stack',
+  :git => 'https://github.com/newcontext/chef-rack_stack'
 
 cookbook 'redisio',
   :git => 'https://github.com/brianbianco/redisio.git'

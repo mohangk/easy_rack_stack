@@ -96,12 +96,17 @@ Ubuntu images on EC2 list http://uec-images.ubuntu.com/precise/current
 1. Repeat steps 2,3,4 and 6 from the 'In your rails-app' section above, but replace 
 all references to your local Vagrant VM with EC2 instead.
 
+####Terminaing the EC2 instance
+
+ec2-terminate-instance INSTANCE_ID 
+
+
 Stuff to look into
 ------------------
 
 ####Setup related issues
 
-####EC2 specific
+###EC2 specific
 
 * We need something like rvm::vagrant recipe for when we run in an EC2 context.
 We need a wrapper for chef-solo and chef-client for when we deploy to EC2. Without 
@@ -112,7 +117,7 @@ when trying to do the initial bundle install. Currently we manually add the user
 follows:
  sudo usermod -a -G rvm ubuntu
 
-####General
+###General
 
 * redis support
 
