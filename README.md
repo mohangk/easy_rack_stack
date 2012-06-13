@@ -101,9 +101,20 @@ Stuff to look into
 
 ####Setup related issues
 
+####EC2 specific
+
 * We need something like rvm::vagrant recipe for when we run in an EC2 context.
 We need a wrapper for chef-solo and chef-client for when we deploy to EC2. Without 
 this once EC2 is spin up with the RVM recipe, subsequent setup.sh runs fail
+
+* On the EC2 instance the 'ubuntu' user is not part of the rvm group, this leads to issues
+when trying to do the initial bundle install. Currently we manually add the user as 
+follows:
+ sudo usermod -a -G rvm ubuntu
+
+####General
+
+* redis support
 
 * nginx support
 
@@ -122,6 +133,12 @@ in rvm_passenger recipe, and git-deploy uses the RAILS_ENV variable. How would w
 keep (production. staging )
 
 ####Deployment related issues
+
+* git-deply commit hooks does not seem to work well with RVM setup on the server
+
+* when doing a git-deploy setup on EC2, the permission of the directory is set to 
+ubuntu:vagrant, because the remote and ssh user is setup as ubuntu. Need to allow for
+it to be done by the vagrant user
 
 * Automate 'bundle install' on git push. git-deploy is suppose to do this but I am not
 sure if its working. Maybe it does not work for the first push ?

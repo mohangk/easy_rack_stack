@@ -90,7 +90,7 @@ Vagrant::Config.run do |config|
       
      require 'json'
      open('dna.json', 'w') do |f|
-       chef.json[:run_list] = ["recipe[chef_rails_app]"] #chef.run_list
+       chef.json[:run_list] = chef.run_list
        f.write chef.json.to_json
      end 
    end

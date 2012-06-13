@@ -40,6 +40,13 @@ GIT
     user (0.2.13)
 
 GIT
+  remote: https://github.com/brianbianco/redisio.git
+  ref: master
+  sha: da3aa515b134de942844884b1d4bb2b43cf7a441
+  specs:
+    redisio (1.0.3)
+
+GIT
   remote: https://github.com/coroutine/chef-postgresql
   ref: master
   sha: 4bd7f58f5ccca224fa2418b0d82b48e15f6b9272
@@ -80,6 +87,7 @@ DEPENDENCIES
   chef_rails_app (>= 0)
   imagemagick (>= 0)
   nodejs (>= 0)
+  redisio (>= 0)
   rvm (>= 0)
   rvm_passenger (>= 0)
   user (>= 0)

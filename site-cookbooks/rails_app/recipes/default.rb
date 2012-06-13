@@ -5,12 +5,13 @@ ohai "reload_passwd" do
 end
 
 #create the vagrant user (which is used for EC2)
-user_account "vagrant" do
-  comment "Vagrant user"
-  home '/home/vagrant'
-  notifies :reload, resources(:ohai => 'reload_passwd'), :immediately
+unless node[:instance_role] == 'vagrant'
+  user_account "vagrant" do
+    comment "Vagrant user"
+    home '/home/vagrant'
+    notifies :reload, resources(:ohai => 'reload_passwd'), :immediately
+  end
 end
-
 
 include_recipe 'apache2::default'
 include_recipe 'apache2::mod_expires'
@@ -27,8 +28,8 @@ include_recipe 'chef-postgresql::server'
 include_recipe 'nodejs'
 include_recipe 'imagemagick'
 include_recipe 'imagemagick::devel'
-
-
+include_recipe 'redisio::install'
+include_recipe 'redisio::enable'
 
 stage_name = 'development'
 appname = 'Pie'
