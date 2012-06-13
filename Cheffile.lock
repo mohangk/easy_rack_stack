@@ -40,6 +40,14 @@ GIT
     user (0.2.13)
 
 GIT
+  remote: http://github.com/opscode-cookbooks/memcached
+  ref: master
+  sha: 870c81af54948880ca4d29794b2ac153009302f4
+  specs:
+    memcached (1.0.2)
+      runit (>= 0.0.0)
+
+GIT
   remote: https://github.com/brianbianco/redisio.git
   ref: master
   sha: da3aa515b134de942844884b1d4bb2b43cf7a441
@@ -76,7 +84,7 @@ GIT
 GIT
   remote: https://github.com/newcontext/chef-rack_stack
   ref: master
-  sha: 95cbdb11de7c70b2616b46f8b8c9467168cd4557
+  sha: 4ccbf4474bc9fac9c13bf2c35ff6980f94b3a3b4
   specs:
     chef-rack_stack (0.0.1)
 
@@ -85,6 +93,7 @@ DEPENDENCIES
   chef-postgresql (>= 0)
   chef-rack_stack (>= 0)
   imagemagick (>= 0)
+  memcached (>= 0)
   nodejs (>= 0)
   redisio (>= 0)
   rvm (>= 0)

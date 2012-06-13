@@ -24,3 +24,5 @@ cookbook 'chef-rack_stack',
 cookbook 'redisio',
   :git => 'https://github.com/brianbianco/redisio.git'
 
+cookbook 'memcached',
+  :git => 'http://github.com/opscode-cookbooks/memcached'

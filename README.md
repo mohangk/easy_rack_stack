@@ -119,7 +119,8 @@ follows:
 
 ###General
 
-* redis support
+ * When running in Passenger, we can't see the Rails logs. Need to enable 
+ PassengeDebugLogFile and PassengerDebugLogLevel to get any logging information
 
 * nginx support
 
@@ -145,7 +146,7 @@ keep (production. staging )
 ubuntu:vagrant, because the remote and ssh user is setup as ubuntu. Need to allow for
 it to be done by the vagrant user
 
-* Automate 'bundle install' on git push. git-deploy is suppose to do this but I am not
+* Automate 'bundle install, rake assets:clean , rake assets:precompile (for production mode) and rake db:migrate' on git push. git-deploy is suppose to do this but I am not
 sure if its working. Maybe it does not work for the first push ?
 
 * Figure out cleanest way to setup database from the local machine instead of ssh-ing
