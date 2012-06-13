@@ -3,14 +3,20 @@ Introduction
 
 This projects objective is two fold
 
- * To provide a Vagrantfile and corresponding cookbook that will setup your Vagrant instance with apache2, rvm, rvm_passenger, postgres and an empty git repo that you can "push to deploy" to
- * To be able to replicate the same configuration above easily on an EC2 instance using the same cookbooks
+ * To provide a Vagrantfile and corresponding cookbook that will setup your Vagrant 
+ instance with apache2, rvm, rvm_passenger, postgres and an empty git repo that you 
+ can "push to deploy" to
 
-In other words we want to simulate the ease of deploy of Heroku both in a local repeatable setup via Vagrant and in the clound via EC2. 
+ * To be able to replicate the same configuration above easily on an EC2 instance 
+ using the same cookbooks
+
+In other words we want to simulate the ease of deploy of Heroku both in a local 
+repeatable setup via Vagrant and in the clound via EC2. 
 
 Status
 ------
-Very much a work in progress. The cookbook that builds everything up still has hardcoded config values in it and is located in site-cookbooks/rails_app/recipes/default.rb. No work has been done on getting the setup on EC2 as of yet.
+Very much a work in progress. The cookbook that builds everything up still has 
+hardcoded config values in it and is located in site-cookbooks/rails_app/recipes/default.rb. 
 
 Setting up chef-rails-app
 ------------------------
@@ -38,23 +44,38 @@ In you rails-app
 
  cat ~/.ssh/id_rsa.pub | ssh vagrant@localhost -p2222 'cat >> .ssh/authorized_keys'
 
-3. Setup the remote
+4. Setup the remote
 
  git deploy setup -r vagrant
 
-4. Setup the deploy hook scripts and commit to local repo
+5. Setup the deploy hook scripts and commit to local repo
 
  git deploy init
 
-5. Push the code
+6. Push the code
 
  git push vagrant local_branch:master 
 
 Spinning up on EC2
 ------------------
-We are basing the work on the https://github.com/nrako/librarian-ec2 project
-Ubuntu images on EC2 list http://uec-images.ubuntu.com/precise/current/l
 
+We are basing the work on the https://github.com/nrako/librarian-ec2 project
+
+Ubuntu images on EC2 list http://uec-images.ubuntu.com/precise/current
+
+####EC2 security setup (one time)
+
+1. List exisiting security groups
+ 
+ ec2-describe-group
+
+2. Add SSH, ICMP and HTTP
+
+ ec2-authorize default -p 22
+ ec2-authorize default -p 80
+ ec2-authorize -P icmp -t -1:-1
+
+####Setting up EC2 instance
 
 1. Spin up an EC2 instance with bootstrap.sh
 
@@ -68,28 +89,42 @@ Ubuntu images on EC2 list http://uec-images.ubuntu.com/precise/current/l
 
 2. Start the magic
 
- ./setup.sh <ip address> ./ ~/.ec2/ec2-ap-southeast-1-keypair
+ ./setup.sh IP_ADDRESS ./ ~/.ec2/ec2-ap-southeast-1-keypair
+
+####Upon the EC2 instace being setup
+
+1. Repeat steps 2,3,4 and 6 from the 'In your rails-app' section above, but replace 
+all references to your local Vagrant VM with EC2 instead.
 
 Stuff to look into
 ------------------
+
+####Setup related issues
+
 * We need something like rvm::vagrant recipe for when we run in an EC2 context.
-We need a wrapper for chef-solo and chef-client for when we deploy to EC2
-
-* Whether projects should include .rvmrc, as it messes with our rvm::system setup ?
-                                                                                                                                    
-* Automate initial 'bundle install' 
-
-* Figure out cleanest way to setup database from the local machine instead of ssh-ing
-into Vagrant ? 
-
-* Best way to handle different environments ? There exists a configuration option 
-in rvm_passenger recipe, and git-deploy uses the RAILS_ENV variable. How would we 
-keep (production. staging )
+We need a wrapper for chef-solo and chef-client for when we deploy to EC2. Without 
+this once EC2 is spin up with the RVM recipe, subsequent setup.sh runs fail
 
 * nginx support
 
 * SSL support
 
-* Postgres pg_hba.conf permission 
-  - we need to be able to override the socket based setting as well
-  - is too permissive ?
+* Postgres 
+  - pg_hba.conf permission 
+    - we need to be able to override the socket based setting as well
+    - is too permissive ?
+  -setup user
+
+* Whether projects should include .rvmrc, as it messes with our rvm::system setup ?
+
+* Best way to handle different environments ? There exists a configuration option 
+in rvm_passenger recipe, and git-deploy uses the RAILS_ENV variable. How would we 
+keep (production. staging )
+
+####Deployment related issues
+
+* Automate 'bundle install' on git push. git-deploy is suppose to do this but I am not
+sure if its working. Maybe it does not work for the first push ?
+
+* Figure out cleanest way to setup database from the local machine instead of ssh-ing
+into Vagrant ? 
