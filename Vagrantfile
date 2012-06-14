@@ -80,15 +80,20 @@ Vagrant::Config.run do |config|
        ]},
       'rvm' => {
         'default_ruby' => 'ruby-1.9.2',
-        'group_users' => ['www-data','vagrant'],
+        'group_users' => ['www-data','nctx'],
         'vagrant' => { 
           'system_chef_client' => '/opt/vagrant_ruby/bin/chef-client' , 
           'system_chef_solo' => '/opt/vagrant_ruby/bin/chef-solo'
-          } 
-        },
+         } 
+       },
       'rack_stack' => {
         'environment' => 'production'
-        } 
+        'deploy_user' => 'nctx',
+        'deploy_group' => 
+       }, 
+      'user' => {
+        'create_user_group' => true
+       }
      }
      require 'json'
      open('dna.json', 'w') do |f|

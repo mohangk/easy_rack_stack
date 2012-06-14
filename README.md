@@ -110,12 +110,13 @@ Stuff to look into
 
 * We need something like rvm::vagrant recipe for when we run in an EC2 context.
 We need a wrapper for chef-solo and chef-client for when we deploy to EC2. Without 
-this once EC2 is spin up with the RVM recipe, subsequent setup.sh runs fail
+this once EC2 is spin up with the RVM recipe, subsequent setup.sh runs fail.
 
-* On the EC2 instance the 'ubuntu' user is not part of the rvm group, this leads to issues
-when trying to do the initial bundle install. Currently we manually add the user as 
-follows:
- sudo usermod -a -G rvm ubuntu
+ Workaround currently is to install librarian in the globel gemset for the default 
+ Ruby
+
+
+* The vagrant user created on EC2 does not have /etc/profile being sources on login
 
 ###General
 
