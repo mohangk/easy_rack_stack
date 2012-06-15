@@ -116,45 +116,46 @@ this once EC2 is spin up with the RVM recipe, subsequent setup.sh runs fail.
  Ruby
 
 
-* The deploy_user created on EC2 does not have /etc/profile being sourced on login
+* The deploy_user created on EC2 does not have /etc/profile being sourced on login 
+(to be verified)
 
 ###General
 
  * When running in Passenger, we can't see the Rails logs. Need to enable 
  PassengeDebugLogFile and PassengerDebugLogLevel to get any logging information
 
-* nginx support
+ * nginx support
 
-* SSL support
+ * SSL support
 
-* Postgres 
+ * Postgres 
   - pg_hba.conf permission 
     - we need to be able to override the socket based setting as well
     - is too permissive ?
   -setup user
 
-* Whether projects should include .rvmrc, as it messes with our rvm::system setup ?
+ * Whether projects should include .rvmrc, as it messes with our rvm::system setup ?
 
-* Best way to handle different environments ? There exists a configuration option 
+ * Best way to handle different environments ? There exists a configuration option 
 in rvm_passenger recipe, and git-deploy uses the RAILS_ENV variable. How would we 
 keep (production. staging )
 
 ####Deployment related issues
 
-* Starting and restarting of delayed_jobs taking into RAILS_ENV
+ * Starting and restarting of delayed_jobs taking into RAILS_ENV
 
-* Setting of RAILS_ENV, especially when SSH-ing into the machine. Ideally for most 
+ * Setting of RAILS_ENV, especially when SSH-ing into the machine. Ideally for most 
 common tasks we go through git-deploy and not need to SSH into the machine.
 
-* git-deply commit hooks does not seem to work well with RVM setup on the server
+ * git-deply commit hooks does not seem to work well with RVM setup on the server
 
-* because git-deploy always tries to do a sudo. Work around currently is to add the 
+ * because git-deploy always tries to do a sudo. Work around currently is to add the 
 deploy_user to the admin group. This is not ideal and we need to stop git-deploy
 from trying to sudo during git deploy setup instead.
 
-* Automate 'bundle install, rake assets:clean , rake assets:precompile (for 
+ * Automate 'bundle install, rake assets:clean , rake assets:precompile (for 
 production mode) and rake db:migrate' on git push. git-deploy is suppose to do this 
 but I am not sure if its working. Maybe it does not work for the first push ?
 
-* Figure out cleanest way to setup database from the local machine instead of ssh-ing
+ * Figure out cleanest way to setup database from the local machine instead of ssh-ing
 into Vagrant ? 
