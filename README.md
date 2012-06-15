@@ -116,7 +116,7 @@ this once EC2 is spin up with the RVM recipe, subsequent setup.sh runs fail.
  Ruby
 
 
-* The vagrant user created on EC2 does not have /etc/profile being sources on login
+* The deploy_user created on EC2 does not have /etc/profile being sourced on login
 
 ###General
 
@@ -141,14 +141,20 @@ keep (production. staging )
 
 ####Deployment related issues
 
+* Starting and restarting of delayed_jobs taking into RAILS_ENV
+
+* Setting of RAILS_ENV, especially when SSH-ing into the machine. Ideally for most 
+common tasks we go through git-deploy and not need to SSH into the machine.
+
 * git-deply commit hooks does not seem to work well with RVM setup on the server
 
-* when doing a git-deploy setup on EC2, the permission of the directory is set to 
-ubuntu:vagrant, because the remote and ssh user is setup as ubuntu. Need to allow for
-it to be done by the vagrant user
+* because git-deploy always tries to do a sudo. Work around currently is to add the 
+deploy_user to the admin group. This is not ideal and we need to stop git-deploy
+from trying to sudo during git deploy setup instead.
 
-* Automate 'bundle install, rake assets:clean , rake assets:precompile (for production mode) and rake db:migrate' on git push. git-deploy is suppose to do this but I am not
-sure if its working. Maybe it does not work for the first push ?
+* Automate 'bundle install, rake assets:clean , rake assets:precompile (for 
+production mode) and rake db:migrate' on git push. git-deploy is suppose to do this 
+but I am not sure if its working. Maybe it does not work for the first push ?
 
 * Figure out cleanest way to setup database from the local machine instead of ssh-ing
 into Vagrant ? 

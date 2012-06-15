@@ -84,7 +84,7 @@ GIT
 GIT
   remote: https://github.com/newcontext/chef-rack_stack
   ref: master
-  sha: 4ccbf4474bc9fac9c13bf2c35ff6980f94b3a3b4
+  sha: 89f519eb85686547da8ee45701a47bef629956ef
   specs:
     chef-rack_stack (0.0.1)
 
