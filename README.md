@@ -104,7 +104,7 @@ ec2-terminate-instance INSTANCE_ID
 Stuff to look into
 ------------------
 
-####Setup related issues
+###Setup related issues
 
 ###EC2 specific
 
@@ -114,10 +114,6 @@ this once EC2 is spin up with the RVM recipe, subsequent setup.sh runs fail.
 
  Workaround currently is to install librarian in the globel gemset for the default 
  Ruby
-
-
-* The deploy_user created on EC2 does not have /etc/profile being sourced on login 
-(to be verified)
 
 ###General
 
@@ -134,28 +130,32 @@ this once EC2 is spin up with the RVM recipe, subsequent setup.sh runs fail.
     - is too permissive ?
   -setup user
 
+ * Mail server setup
+
  * Whether projects should include .rvmrc, as it messes with our rvm::system setup ?
 
  * Best way to handle different environments ? There exists a configuration option 
 in rvm_passenger recipe, and git-deploy uses the RAILS_ENV variable. How would we 
 keep (production. staging )
 
-####Deployment related issues
+##Deployment related issues
+
+###General
 
  * Starting and restarting of delayed_jobs taking into RAILS_ENV
 
  * Setting of RAILS_ENV, especially when SSH-ing into the machine. Ideally for most 
 common tasks we go through git-deploy and not need to SSH into the machine.
 
- * git-deply commit hooks does not seem to work well with RVM setup on the server
+ * git-deply commit hooks does not seem to work well with RVM setup on the server.
+ It does not seem to use to use the right gemset.
 
- * because git-deploy always tries to do a sudo. Work around currently is to add the 
-deploy_user to the admin group. This is not ideal and we need to stop git-deploy
-from trying to sudo during git deploy setup instead.
-
- * Automate 'bundle install, rake assets:clean , rake assets:precompile (for 
-production mode) and rake db:migrate' on git push. git-deploy is suppose to do this 
-but I am not sure if its working. Maybe it does not work for the first push ?
+ * Git-deploy does not run after_push script on initial push, only on subsequent pushes. 
+ Should this be the desired behaviour?
 
  * Figure out cleanest way to setup database from the local machine instead of ssh-ing
-into Vagrant ? 
+into servers 
+
+###EC2
+
+ * Need to set ENVVAR with IP/domain name of instance. Useful for config files 
