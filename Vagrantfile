@@ -81,6 +81,7 @@ Vagrant::Config.run do |config|
       'rvm' => {
         'default_ruby' => 'ruby-1.9.2',
         'group_users' => ['www-data','nctx'],
+        'global_gems' => [{ 'name' => 'librarian'}],
         'rvmrc' => { 'rvm_trust_rvmrcs_flag' => 1 },
         'vagrant' => { 
           'system_chef_client' => '/opt/vagrant_ruby/bin/chef-client', 
