@@ -91,9 +91,9 @@ Vagrant::Config.run do |config|
       'rack_stack' => {
         'appname' => 'Pie',
         'environment' => 'production',
-        'deploy_user_authorized_key' => 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDskEpOM1FM6BJTlTGC+XfKAFaYuOkOzDgLLxU1QP+orlbL+YECxXy9m2dLy5sV+gpLtarP1Gc7+ei7O4zQXWhCPQYmEWvfvD2qjiTEUwKEV5EGZ58gwNr/BsQ7aUdsi7QQleRSF1k2Z+DR872YRCNvu6BCTqje8HvSjNubFVEkdBOJJTxTGsUeJn41BZ4AXI9BsNXsOPEGll2VaWyVXco16310ovu56kk0KvVNAvJ97vdrVSriMD6xmmy/Bo/l0H0kAz6KhQkxlWkhBZePsEBt4Z3vcTD+YzkfP1OzQ87DHt4C+HKz7tVy45vri4ObPHS3SfMOzb/cPDRF4s9Dzarl nctx@loyang',
-        'deploy_user' => 'nctx',
-        'deploy_group' => 'nctx'
+        'deploy_user_authorized_key' => 'ssh-rsa PUBLICLEY user@host',
+        'deploy_user' => 'deploy_user',
+        'deploy_group' => 'deploy_user'
        }, 
       'user' => {
         'create_user_group' => 'true'
