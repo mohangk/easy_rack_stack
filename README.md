@@ -18,43 +18,18 @@ Status
 Very much a work in progress. The cookbook that builds everything up still has 
 hardcoded config values in it and is located in site-cookbooks/rails_app/recipes/default.rb. 
 
-Setting up chef-rails-app
-------------------------
+Setting up easy_rack_stack
+--------------------------
 
-1. git clone git://github.com/mohangk/chef_rails_app.git
-2. rvm ruby-1.9.3@foobar --create --rvmrc
+1. git clone git://github.com/newcontext/easy_rack_stack.git
 3. bundle install
 4. vagrant box add precise64 http://files.vagrantup.com/precise64.box
 5. librarian-chef install
 
-In you rails-app
-----------------
+Strating up on Vagrant
+----------------------
 
-1. Add to Gemfile
-
- gem 'git-deploy'
-
-2. Add Vagrant as a remote 
-
- git remote add vagrant ssh://vagrant@localhost:2222/path/to/myapp
-
-3. Add your public key to the vagrant instance (Probably want to do this as part of the chef setup)
-
- ssh vagrant@localhost -p 2222 mkdir -p .ssh
-
- cat ~/.ssh/id_rsa.pub | ssh vagrant@localhost -p2222 'cat >> .ssh/authorized_keys'
-
-4. Setup the remote
-
- git deploy setup -r vagrant
-
-5. Setup the deploy hook scripts and commit to local repo
-
- git deploy init
-
-6. Push the code
-
- git push vagrant local_branch:master 
+1. vagrant up
 
 Spinning up on EC2
 ------------------
@@ -99,6 +74,30 @@ all references to your local Vagrant VM with EC2 instead.
 ####Terminaing the EC2 instance
 
 ec2-terminate-instance INSTANCE_ID 
+
+
+Deploying your rails-app to easy_rack_stack Vagrant
+---------------------------------------------------
+
+1. Add to Gemfile
+
+ gem 'git-deploy'
+
+2. Add Vagrant as a remote 
+
+ git remote add vagrant ssh://vagrant@localhost:2222/path/to/myapp
+
+4. Setup the remote
+
+ git deploy setup -r vagrant
+
+5. Setup the deploy hook scripts and commit to local repo
+
+ git deploy init
+
+6. Push the code
+
+ git push vagrant local_branch:master 
 
 
 Stuff to look into
