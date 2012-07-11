@@ -22,7 +22,11 @@ Setting up easy_rack_stack
 --------------------------
 
 1. git clone git://github.com/newcontext/easy_rack_stack.git
-3. bundle install
+2. bundle install
+3. cp Vagrantfile.sample Vagrantfile
+
+  Make relevant changes to the contents of the chef.json section of the Vagrantfile as per [chef-rack_stack attributes](http://github.com/newcontext/chef-rack_stack)
+  
 4. vagrant box add precise64 http://files.vagrantup.com/precise64.box
 5. librarian-chef install
 

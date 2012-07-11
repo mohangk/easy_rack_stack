@@ -80,7 +80,7 @@ Vagrant::Config.run do |config|
        ]},
       'rvm' => {
         'default_ruby' => 'ruby-1.9.2',
-        'group_users' => ['www-data','nctx'],
+        'group_users' => ['www-data','<deploy_user>'],
         'global_gems' => [{ 'name' => 'librarian'}],
         'rvmrc' => { 'rvm_trust_rvmrcs_flag' => 1 },
         'vagrant' => { 
@@ -89,11 +89,11 @@ Vagrant::Config.run do |config|
          } 
        },
       'rack_stack' => {
-        'appname' => 'Pie',
+        'appname' => '<appname>',
         'environment' => 'production',
-        'deploy_user_authorized_key' => 'ssh-rsa PUBLICLEY user@host',
-        'deploy_user' => 'deploy_user',
-        'deploy_group' => 'deploy_user'
+        'deploy_user_authorized_key' => '<ssh-rsa PUBLICLEY user@host>',
+        'deploy_user' => '<deploy_user>',
+        'deploy_group' => '<deploy_user>'
        }, 
       'user' => {
         'create_user_group' => 'true'
